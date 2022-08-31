@@ -1,0 +1,54 @@
+.cartContainer {
+  margin-left: 200px;
+  margin-top: 10px;
+}
+.bannerImage {
+  width: 120px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.bannerImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.eachItem {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  padding: 20px;
+  width: 50%;
+}
+.desc {
+  font-weight: bold;
+  width: 200px;
+}
+.addcartbtn {
+  margin-left: 20px;
+  margin-right: 20px;
+  cursor: pointer;
+  display: flex;
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+  border-radius: 10px;
+  background-color: black;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.6), inset -2px -2px 3px rgba(0, 0, 0, 0.6);
+}
+.parts {
+  width: 20px;
+}
+.delete {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.heading {
+  font-size: bold;
+  margin-top: 30px;
+}

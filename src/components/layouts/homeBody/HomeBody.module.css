@@ -1,0 +1,13 @@
+.bodyContainer {
+  display: flex;
+  height: 95vh;
+}
+.caardsContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
