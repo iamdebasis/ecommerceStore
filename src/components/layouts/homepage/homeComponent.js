@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import HeaderComponent from "../../common/header/headerComponent";
 import HomeBody from "../homeBody/HomeBody";
 import { getCurrentPage, loadItems } from "../../../store/entities/items";
-import CartComponent from "../cartPage copy/cartComponent";
+import CartComponent from "../cartPage/cartComponent";
 
 function HomeComponent() {
   const dispatch = useDispatch();
