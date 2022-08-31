@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# An eCommerce store having  Multiple features like Product listing, Filturing, searching etc
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
