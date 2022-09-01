@@ -31,3 +31,11 @@
 .selectedSec{
   border-bottom: 1px solid gray;
 }
+
+@media (max-width: 768px) {
+  .products {
+    align-items: center;
+    display: flex;
+  }
+}
+

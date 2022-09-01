@@ -1,6 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
+import { capitalizeFirstLetter } from "../../helpers/helpers";
 import * as action from "../api";
 
 const initialState = {
@@ -14,6 +14,7 @@ const initialState = {
   filteredTypes: [],
   filteredGender: [],
   filterBy: {},
+  showFilterSecMobile: false,
 };
 
 export const slice = createSlice({
@@ -71,6 +72,9 @@ export const slice = createSlice({
       home.cartItems = home.cartItems.filter((item) => item.id !== payload.id);
     },
     searchItemInList: (home, { payload }) => {
+      home.filteredColours = [];
+      home.filteredTypes = [];
+      home.filteredGender = [];
       const myArray = payload.split(" ");
       console.log(current(home.filters.colors));
       myArray.map((each) => {
@@ -112,6 +116,9 @@ export const slice = createSlice({
       home.filterBy = { ...(home.filteredColours.length > 0 && { color: home.filteredColours }), ...(home.filteredTypes.length > 0 && { type: home.filteredTypes }), ...(home.filteredGender.length > 0 && { gender: home.filteredGender }) };
       let result = home.listingItems.filter((o) => Object.keys(home.filterBy).every((k) => home.filterBy[k].some((f) => o[k] === f)));
       home.filteredItems = result;
+    },
+    filterSec: (home, { payload }) => {
+      home.showFilterSecMobile = !home.showFilterSecMobile;
     },
   },
 });
@@ -157,9 +164,14 @@ export const increaseItemCount = (value) => (dispatch) => {
     payload: value,
   });
 };
-
+export const setShowFilterSec = (value) => (dispatch) => {
+  dispatch({
+    type: filterSec.type,
+    payload: value,
+  });
+};
 // Action creators
-const { testDetailsReceive, testsRequested, testsRequestFailed, addToCart, decreaseCount, increaseCount, updatePage, filter, deleteItem, searchItemInList } = slice.actions;
+const { testDetailsReceive, testsRequested, testsRequestFailed, addToCart, decreaseCount, increaseCount, updatePage, filter, deleteItem, searchItemInList, filterSec } = slice.actions;
 
 export const loadItems = () => (dispatch, getState) => {
   return dispatch(
@@ -210,6 +222,10 @@ export const getCartItems = createSelector(
 export const getCurrentPage = createSelector(
   (state) => state.entities.home,
   (currentPage) => currentPage?.currentPage
+);
+export const getShowFilterSecMobile = createSelector(
+  (state) => state.entities.home,
+  (showFilterSecMobile) => showFilterSecMobile?.showFilterSecMobile
 );
 
 export default slice.reducer;

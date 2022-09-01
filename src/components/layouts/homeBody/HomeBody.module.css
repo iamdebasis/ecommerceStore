@@ -12,3 +12,12 @@
   overflow-x: hidden;
   margin-top: 20px;
 }
+@media (max-width: 768px) {
+  .bodyContainer {
+    
+  }
+  .caardsContainer{
+    width: 100%;
+    justify-content: center;
+  }
+}
