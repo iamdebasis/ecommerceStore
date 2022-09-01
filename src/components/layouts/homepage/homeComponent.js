@@ -19,7 +19,7 @@ function HomeComponent() {
   return (
     <div className={homeStyles.homepageContainer}>
       <HeaderComponent />
-      <SearchItemsSection />
+      {currentPage === "home" && <SearchItemsSection />}
       {currentPage === "home" ? <HomeBody /> : <CartComponent />}
     </div>
   );

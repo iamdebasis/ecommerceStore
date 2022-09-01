@@ -53,5 +53,11 @@
   margin-top: 30px;
 }
 @media (max-width: 768px) {
-
+  .cartContainer {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  .eachItem {
+    width: unset;
+  }
 }
