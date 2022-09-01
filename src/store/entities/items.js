@@ -1,5 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
+import { capitalizeFirstLetter } from "../../helpers/capitalizeFirstLetter";
 import * as action from "../api";
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   filteredColours: [],
   filteredTypes: [],
   filteredGender: [],
-  filterBy:{}
+  filterBy: {},
 };
 
 export const slice = createSlice({
@@ -69,6 +70,30 @@ export const slice = createSlice({
     deleteItem: (home, { payload }) => {
       home.cartItems = home.cartItems.filter((item) => item.id !== payload.id);
     },
+    searchItemInList: (home, { payload }) => {
+      const myArray = payload.split(" ");
+      console.log(current(home.filters.colors));
+      myArray.map((each) => {
+        if (home.filters?.colors.includes(capitalizeFirstLetter(each))) {
+          if (!home.filteredColours.includes(capitalizeFirstLetter(each))) {
+            home.filteredColours.push(capitalizeFirstLetter(each));
+          }
+        }
+        if (home.filters?.type.includes(capitalizeFirstLetter(each))) {
+          if (!home.filteredTypes.includes(capitalizeFirstLetter(each))) {
+            home.filteredTypes.push(capitalizeFirstLetter(each));
+          }
+        }
+        if (home.filters?.gender.includes(capitalizeFirstLetter(each))) {
+          if (!home.filteredGender.includes(capitalizeFirstLetter(each))) {
+            home.filteredGender.push(capitalizeFirstLetter(each));
+          }
+        }
+        home.filterBy = { ...(home.filteredColours.length > 0 && { color: home.filteredColours }), ...(home.filteredTypes.length > 0 && { type: home.filteredTypes }), ...(home.filteredGender.length > 0 && { gender: home.filteredGender }) };
+        let result = home.listingItems.filter((o) => Object.keys(home.filterBy).every((k) => home.filterBy[k].some((f) => o[k] === f)));
+        home.filteredItems = result;
+      });
+    },
     filter: (home, { payload }) => {
       if (payload.key === "colors") {
         if (home.filteredColours.includes(payload.filter)) {
@@ -84,12 +109,18 @@ export const slice = createSlice({
         } else home.filteredGender.push(payload.filter);
       }
 
-      home.filterBy = { ...(home.filteredColours.length>0 && {color:home.filteredColours}),...(home.filteredTypes.length>0 && {type:home.filteredTypes}),...(home.filteredGender.length>0 && {gender:home.filteredGender})};
+      home.filterBy = { ...(home.filteredColours.length > 0 && { color: home.filteredColours }), ...(home.filteredTypes.length > 0 && { type: home.filteredTypes }), ...(home.filteredGender.length > 0 && { gender: home.filteredGender }) };
       let result = home.listingItems.filter((o) => Object.keys(home.filterBy).every((k) => home.filterBy[k].some((f) => o[k] === f)));
       home.filteredItems = result;
     },
   },
 });
+export const searchItem = (value) => (dispatch) => {
+  dispatch({
+    type: searchItemInList.type,
+    payload: value,
+  });
+};
 export const deleteCartItem = (value) => (dispatch) => {
   dispatch({
     type: deleteItem.type,
@@ -128,7 +159,7 @@ export const increaseItemCount = (value) => (dispatch) => {
 };
 
 // Action creators
-const { testDetailsReceive, testsRequested, testsRequestFailed, addToCart, decreaseCount, increaseCount, updatePage, filter, deleteItem } = slice.actions;
+const { testDetailsReceive, testsRequested, testsRequestFailed, addToCart, decreaseCount, increaseCount, updatePage, filter, deleteItem, searchItemInList } = slice.actions;
 
 export const loadItems = () => (dispatch, getState) => {
   return dispatch(

@@ -1,0 +1,38 @@
+.searchContainer {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.inputWrap {
+  width: 50%;
+  height: 3.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 0 4rem;
+  border-radius: 0.8rem;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.cartImg {
+  position: relative;
+  width: 32px;
+  cursor: pointer;
+  height: 32px;
+  /* position: absolute; */
+  top: 0.7rem;
+  left: 3rem;
+}
+.cartImg:hover{
+
+}
+.cartImg img {
+  width: 100%;
+  height: 100%;
+}

@@ -1,10 +1,12 @@
 .filterSection {
   width: 350px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  height: 90%;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  height: 80%;
+  overflow-y: scroll;
   margin-right: 100px;
   margin-left: 50px;
   margin-top: 40px;
+  overflow-x: hidden;
 }
 .eachfilter {
   display: flex;

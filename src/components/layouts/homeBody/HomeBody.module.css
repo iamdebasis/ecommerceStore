@@ -1,6 +1,6 @@
 .bodyContainer {
   display: flex;
-  height: 95vh;
+  height: 85%;
 }
 .caardsContainer {
   width: 90%;
@@ -10,4 +10,5 @@
   /* justify-content: space-around; */
   overflow-y: scroll;
   overflow-x: hidden;
+  margin-top: 20px;
 }

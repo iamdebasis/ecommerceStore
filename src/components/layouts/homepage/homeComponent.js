@@ -5,6 +5,8 @@ import HeaderComponent from "../../common/header/headerComponent";
 import HomeBody from "../homeBody/HomeBody";
 import { getCurrentPage, loadItems } from "../../../store/entities/items";
 import CartComponent from "../cartPage/cartComponent";
+import SearchItemsSection from "../searchItems/searchItemsSection";
+import homeStyles from "./homeStyles.module.css";
 
 function HomeComponent() {
   const dispatch = useDispatch();
@@ -15,8 +17,9 @@ function HomeComponent() {
   const currentPage = useSelector(getCurrentPage);
 
   return (
-    <div >
+    <div className={homeStyles.homepageContainer}>
       <HeaderComponent />
+      <SearchItemsSection />
       {currentPage === "home" ? <HomeBody /> : <CartComponent />}
     </div>
   );
